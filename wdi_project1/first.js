@@ -66,6 +66,9 @@ var riddle = $('.riddle')
       game.questions[4].correctAnswer = game.questions[4].answer2
       game.questions[5].correctAnswer = game.questions[5].answer3
 
+    // player start: the game will always start with player1:
+      game.currentPlayer = game.player1
+//initial riddle question
       function displayQuestion(index) {
         $('#question').text(game.questions[index].text)
         $('#answer1').text(game.questions[index].answer1)
@@ -73,7 +76,6 @@ var riddle = $('.riddle')
         $('#answer3').text(game.questions[index].answer3)
         $('#answer4').text(game.questions[index].answer4)
       }
-displayQuestion();
 
 //response to answers
 // if $('click', game.questions[i].correctAnswer) {
@@ -87,13 +89,22 @@ displayQuestion();
 // }
 // }
 
-//Go on to next level
-next.addEventListener("click", nextQuestion);
+//fucntion for on to next level
+//next.addEventListener("click", nextQuestion);
 function nextQuestion() {
+  for(i=0; i < game.questions.length; i++)
   $('riddle')replaceWith(game.questions[i+1])
 }
+
 //switch players when reaching end.
-function switchTurns() {
+if(riddle.text == game.questions[4]) {
+  next.on('click', nextPlayer)
+  $('game.questions')[0].reset();
+} else {
+next.on('click', nextQuestion)}
+
+
+function nextPlayer() {
   if(game.currentPlayer == game.player1) {
     game.currentPlayer = game.player2
   } else {
