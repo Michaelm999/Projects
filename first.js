@@ -1,17 +1,65 @@
-var correctAnswerOne = $('.correct1');
-var score = $('#score');
-var nextLevel = $('.nextLevel');
-var buttonOne = $('.buttons1');
+      var game = {
+        player1: {},
+        player2: {},
+        questions: [
+          {
+            text: "When I am unknown, I am something.<br> But when I am known, I become nothing<br>What am I?",
+            answer1: "A: A Riddle",
+            answer2: "B: A Secret",
+            answer3: "C: A Punchline",
+            answer4: "D: A Surprise",
+          },
+          {
+            text: "A Man builds a house where all four sides face North.<br>A bear walks by the house<br>What color is the bear?",
+            answer1: "A: brown",
+            answer2: "B: white",
+            answer3: "C: black",
+            answer4: "D: Not Applicable",
+          },
+          {
+            text: "How much dirt is in a hole 6 and a half feet wide, 8 feet deep, and 5 feet long?",
+            answer1: "A: 240 cubic feet",
+            answer2: "B: 320 cubic feet",
+            answer3: "C: 0 cubic feet",
+            answer4: "D: 480 cubic feet",
+          },
+          {
+            text: "I’m rarely touched but often held and if you’re wise you’ll use me well. What am I?",
+            answer1: "A: Tounge",
+            answer2: "B: Mind",
+            answer3: "C: Hand",
+            answer4: "D: Heart",
+          },
+          {
+            text: "An diesel train is heading North at 100mph, while a 40mph wind blows East. What direction does the smoke blow?",
+            answer1: "A: South",
+            answer2: "B: No Direction",
+            answer3: "C: East",
+            answer4: "D: West",
+          },
+          {
+            text: "It's more powerful than God. It's more evil than the devil. The poor have it. The rich need it. If you eat it, you'll die. What am I?",
+            answer1: "A: Love",
+            answer2: "B: Friendship",
+            answer3: "C: Nothing",
+            answer4: "D: Lonliness",
+          },
+        ]
+      }
 
-//choose the correct answer
-buttonOne.click(function() {
-  if (buttonOne.child === correctAnswerOne) {
-    alert("Congrats! Lets go to the next level")
-    score = score+2
-    $('#score').text("score: "+score)
-  } else {
-    alert("Sorry! Incorrect. Hint: What is in front of you right now!")
-    score = score-2
-    $('#score').text("score: "+score)
-  }
-});
+//answer key
+      game.questions[0].correctAnswer = game.questions[0].answer1
+      game.questions[1].correctAnswer = game.questions[1].answer4
+      game.questions[2].correctAnswer = game.questions[2].answer1
+      game.questions[3].correctAnswer = game.questions[3].answer1
+      game.questions[4].correctAnswer = game.questions[4].answer2
+      game.questions[5].correctAnswer = game.questions[5].answer3
+
+      function displayQuestion(index) {
+        $('#question').text(game.questions[index].text)
+        $('#answer1').text(game.questions[index].answer1)
+        $('#answer2').text(game.questions[index].answer2)
+        $('#answer3').text(game.questions[index].answer3)
+        $('#answer4').text(game.questions[index].answer4)
+      }
+displayQuestion();
