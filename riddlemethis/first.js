@@ -1,6 +1,7 @@
       var game = {
         player1: {},
         player2: {},
+        score=0
         questions: [
           {
             text: "When I am unknown, I am something.<br> But when I am known, I become nothing<br>What am I?",
@@ -40,12 +41,22 @@
           {
             text: "It's more powerful than God. It's more evil than the devil. The poor have it. The rich need it. If you eat it, you'll die. What am I?",
             answer1: "A: Love",
-            answer2: "B: Friendship",
+            answer2: "B: Lonliness",
             answer3: "C: Nothing",
-            answer4: "D: Lonliness",
+            answer4: "D: Friendship",
           },
         ]
+//hints
+    var hints[
+        "What are you solving right now",
+        "Polar bears only live at the North Pole",
+        "Its in your head",
+        "Where does the smoke from a diesel come from",
+        "It's what you'll have if you fail to answer",
+      ]
       }
+var next = $('.next')
+var riddle = $('.riddle')
 
 //answer key
       game.questions[0].correctAnswer = game.questions[0].answer1
@@ -63,3 +74,21 @@
         $('#answer4').text(game.questions[index].answer4)
       }
 displayQuestion();
+
+//response to answers
+// if $('click', game.questions[i].correctAnswer) {
+//   return true
+//    score +=2
+//   alert("Congrats, lets move on to the next level")
+// }  else {
+//     return false
+//     alert("Sorry. Incorrect: Hint: "+game.hint[i].text)
+//    score-=1
+// }
+// }
+
+//Go on to next level
+next.addEventListener("click", nextQuestion);
+function nextQuestion() {
+  $('riddle')replaceWith(game.questions[i+1])
+}
