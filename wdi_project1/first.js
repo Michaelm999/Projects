@@ -1,7 +1,6 @@
-      var game = {
+var game = {
         player1: {},
         player2: {},
-        score=0
         questions: [
           {
             text: "When I am unknown, I am something.<br> But when I am known, I become nothing<br>What am I?",
@@ -47,14 +46,15 @@
           },
         ]
 //hints
-    var hints[
+      hints [
         "What are you solving right now",
         "Polar bears only live at the North Pole",
         "Its in your head",
         "Where does the smoke from a diesel come from",
         "It's what you'll have if you fail to answer",
-      ]
+        ]
       }
+var score = 0
 var next = $('.next')
 var riddle = $('.riddle')
 
@@ -97,7 +97,7 @@ function nextQuestion() {
 }
 
 //switch players when reaching end.
-if(riddle.text == game.questions[4]) {
+if(riddle.innerHTML == game.questions[4]) {
   next.on('click', nextPlayer)
   $('game.questions')[0].reset();
 } else {

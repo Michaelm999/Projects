@@ -1,0 +1,15 @@
+img {
+width:60%;
+height:50%;
+text-align: center;
+}
+
+.riddle{
+  text-align: center;
+  /*display: none;*/
+}
+
+.next{
+  text-align: center;
+  /*display: none;*/
+}

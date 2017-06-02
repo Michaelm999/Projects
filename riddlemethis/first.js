@@ -1,17 +1,16 @@
-      var game = {
+var game = {
         player1: {},
         player2: {},
-        score=0
         questions: [
           {
-            text: "When I am unknown, I am something.<br> But when I am known, I become nothing<br>What am I?",
+            text: "When I am unknown, I am something. But when I am known, I become nothing. What am I?",
             answer1: "A: A Riddle",
             answer2: "B: A Secret",
             answer3: "C: A Punchline",
             answer4: "D: A Surprise",
           },
           {
-            text: "A Man builds a house where all four sides face North.<br>A bear walks by the house<br>What color is the bear?",
+            text: "A Man builds a house where all four sides face North. A bear walks by the house. What color is the bear?",
             answer1: "A: brown",
             answer2: "B: white",
             answer3: "C: black",
@@ -45,20 +44,23 @@
             answer3: "C: Nothing",
             answer4: "D: Friendship",
           },
-        ]
+        ],
 //hints
-    var hints[
+        hint: [
         "What are you solving right now",
         "Polar bears only live at the North Pole",
-        "Its in your head",
+        "How do you traditionally make a hole",
+        "It's in your head",
         "Where does the smoke from a diesel come from",
         "It's what you'll have if you fail to answer",
-      ]
+        ]
       }
+var score = 0
 var next = $('.next')
 var riddle = $('.riddle')
-
-//answer key
+var begin = $('.intro')
+var start = $('#start')
+//Answer Key
       game.questions[0].correctAnswer = game.questions[0].answer1
       game.questions[1].correctAnswer = game.questions[1].answer4
       game.questions[2].correctAnswer = game.questions[2].answer1
@@ -66,29 +68,74 @@ var riddle = $('.riddle')
       game.questions[4].correctAnswer = game.questions[4].answer2
       game.questions[5].correctAnswer = game.questions[5].answer3
 
+// Player Start: the game will always start with player1:
+      game.currentPlayer = game.player1
+//initial riddle question
       function displayQuestion(index) {
+        console.log($('#question').val());
         $('#question').text(game.questions[index].text)
         $('#answer1').text(game.questions[index].answer1)
         $('#answer2').text(game.questions[index].answer2)
         $('#answer3').text(game.questions[index].answer3)
         $('#answer4').text(game.questions[index].answer4)
       }
-displayQuestion();
 
-//response to answers
-// if $('click', game.questions[i].correctAnswer) {
-//   return true
-//    score +=2
-//   alert("Congrats, lets move on to the next level")
-// }  else {
-//     return false
-//     alert("Sorry. Incorrect: Hint: "+game.hint[i].text)
-//    score-=1
-// }
+
+
+//Put up a start page, which would appear and explain the premise:
+//a challenge to see if anyone is clever enough to beat my challenge.
+//after clikcing the screen, this fades away, and up comes the first question
+
+// start.on('click',function{
+//   $('.intro').fadeOut();
+//   riddle.css(display: visible)
+//   next.css(display: visible)
+//   displayQuestion(0)
+// });
+
+//ANSWERS
+//response to answers: tells them if they're right or not.
+//If they guess wrong, give them a hint to help them out from the hint array.
+
+riddle.on('click', function() {
+for(i=0; i < game.questions.length; i++)
+  if(button = game.questions[i].correctAnswer) {
+   score +=2
+  alert("Congrats, lets move on to the next level")
+ }  else {
+    alert("Sorry. Incorrect: Hint: "+game.hint[i].text)
+   score-=1
+ }
+});
+
+//Function for GOING ON TO THE NEXT LEVEL.
+//pushing the next level button makes the next question text and answers appear.
+//
+// function nextQuestion() {
+//   for(i=0; i < game.questions.length; i++)
+//   displayQuestion(i+1)
+// };
+//
+//GAME OVER
+//Give a congratlations message. Showcase the player's score.
+//If both players playthrough, show player1 and player2's scores next to one another.
+//
+//Switch players when reaching the end of the questions
+//Also, resets the board for the next player
+//
+//
+//
+//
+//function nextPlayer() {
+//   if(game.currentPlayer == game.player1) {
+//     game.currentPlayer = game.player2
+//   } else {
+//     game.currentPlayer = game.player1
+//   }
 // }
 
-//Go on to next level
-next.addEventListener("click", nextQuestion);
-function nextQuestion() {
-  $('riddle')replaceWith(game.questions[i+1])
-}
+//REACH GOALS
+
+//Put in a question or two that involve a prompt, rather than multiple choice.
+//randomize the order the questions appear in.
+//animations
