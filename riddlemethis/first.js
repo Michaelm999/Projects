@@ -89,8 +89,9 @@ game.questions[3].answer3, game.questions[4].answer2, game.questions[5].answer3]
 
 start.on('click',function() {
   $('.intro').fadeOut()
-  riddle.css({'display': 'visible'})
-  next.css({'display': 'visible'})
+  riddle.css({'visibility': 'visible'})
+  next.css({'visibility': 'visible'})
+  // document.css({background: cyan})
   displayQuestion(0)
 });
 
