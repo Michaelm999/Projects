@@ -6,10 +6,10 @@ text-align: center;
 
 .riddle{
   text-align: center;
-  /*display: none;*/
+  display: hidden;
 }
 
 .next{
   text-align: center;
-  /*display: none;*/
+  display: hidden;
 }
