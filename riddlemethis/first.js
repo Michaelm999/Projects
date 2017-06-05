@@ -1,6 +1,6 @@
 var game = {
-        player1: {},
-        player2: {},
+        player1: {score: 0},
+        player2: {score: 0},
         questions: [
           {
             text: "When I am unknown, I am something. But when I am known, I become nothing. What am I?",
@@ -60,22 +60,26 @@ var next = $('.next')
 var riddle = $('.riddle')
 var begin = $('.intro')
 var start = $('#start')
+var scores = $('.scores')
+var i = 0
+
+
+
 //Answer Key
 var answers = [game.questions[0].answer1, game.questions[1].answer4, game.questions[2].answer1,
 game.questions[3].answer3, game.questions[4].answer2, game.questions[5].answer3]
 
-      // game.questions[0].correctAnswer = game.questions[0].answer1
-      // game.questions[1].correctAnswer = game.questions[1].answer4
-      // game.questions[2].correctAnswer = game.questions[2].answer1
-      // game.questions[3].correctAnswer = game.questions[3].answer3
-      // game.questions[4].correctAnswer = game.questions[4].answer2
-      // game.questions[5].correctAnswer = game.questions[5].answer3
+// game.questions[0].correctAnswer = game.questions[0].answer1
+// game.questions[1].correctAnswer = game.questions[1].answer4
+// game.questions[2].correctAnswer = game.questions[2].answer1
+// game.questions[3].correctAnswer = game.questions[3].answer3
+// game.questions[4].correctAnswer = game.questions[4].answer2
+// game.questions[5].correctAnswer = game.questions[5].answer3
 
 // Player Start: the game will always start with player1:
       game.currentPlayer = game.player1
 //initial riddle question
       function displayQuestion(index) {
-        console.log($('#question').val());
         $('#question').text(game.questions[index].text)
         $('#answer1').text(game.questions[index].answer1)
         $('#answer2').text(game.questions[index].answer2)
@@ -91,66 +95,53 @@ start.on('click',function() {
   $('.intro').fadeOut()
   riddle.css({'visibility': 'visible'})
   next.css({'visibility': 'visible'})
-  // document.css({background: cyan})
-  displayQuestion(0)
+  displayQuestion(i)
 });
 
 //ANSWERS
 //response to answers: tells them if they're right or not.
 //If they guess wrong, give them a hint to help them out from the hint array.
 
-// riddle.on('click', function() {
-//   for (var i = 0; i < questions.length; i+1)
-//   if(game.questions.answer[i] = answers[i]) {
-//   alert("Congrats, lets move on to the next level")
-//   score +=2
-//  }  else {
-//     alert("Sorry. Incorrect: Hint: "+hint[i])
-//    score-=1
-//  }
-// });
 
-//contingency?
-// riddle.on('click', function() {
-//   if ($('#answer1')= game.questions[0].answer1 || game.questions[2].answer1) {
-//   alert("Congrats, lets move on to the next level")
-//   score +=2
-//  }  else {
-//     alert("Sorry. Incorrect")
-//    score-=1
-//  }
-// });
-//
-// riddle.on('click', function() {
-//   if ($('#answer2')= game.questions[4].answer2) {
-//   alert("Congrats, lets move on to the next level")
-//   score +=2
-//  }  else {
-//     alert("Sorry. Incorrect")
-//    score-=1
-//  }
-// });
-//
-// riddle.on('click', function() {
-//   if ($('#answer3')= game.questions[3].answer3 || game.questions[5].answer3) {
-//   alert("Congrats, lets move on to the next level")
-//   score +=2
-//  }  else {
-//     alert("Sorry. Incorrect")
-//    score-=1
-//  }
-// });
-//
-// riddle.on('click', function() {
-//   if ($('#answer4')= game.questions[1].answer4) {
-//   alert("Congrats, lets move on to the next level")
-//   score +=2
-//  }  else {
-//     alert("Sorry. Incorrect")
-//    score-=1
-//  }
-// });
-//
+$('#answer1').on('click', function() {
+  if ($('#answer1') === game.questions[0].answer1 || game.questions[2].answer1) {
+  alert("Congrats, lets move on to the next level")
+  score +=2
+ } else {
+    alert("Sorry. Incorrect. Hint: "+game.hint[i])
+   score-=1
+ }
+});
+
+$('#answer2').on('click', function() {
+  if ($('#answer2') === game.questions[4].answer2) {
+  alert("Congrats, lets move on to the next level")
+  score +=2
+ } else {
+    alert("Sorry. Incorrect. Hint: "+game.hint[i])
+   score-=1
+ }
+});
+
+$('#answer3').on('click', function() {
+  if ($('#answer3') === game.questions[3].answer3 || game.questions[5].answer3) {
+  alert("Congrats, lets move on to the next level")
+  score +=2
+ } else {
+    alert("Sorry. Incorrect. Hint: "+game.hint[i])
+   score-=1
+ }
+});
+
+$('#answer4').on('click', function() {
+  if ($('#answer4') === game.questions[1].answer4) {
+  alert("Congrats, lets move on to the next level")
+  score +=2
+ } else {
+    alert("Sorry. Incorrect. Hint: "+game.hint[i])
+   score-=1
+ }
+});
 //
 // //HINTS
 // //Possibly include a hint button, and link the hints into the questions array,
@@ -160,12 +151,10 @@ start.on('click',function() {
 // //Function for GOING ON TO THE NEXT LEVEL.
 // //pushing the next level button makes the next question text and answers appear.
 // //
-// next.on('click', function() {
-// nextQuestion()})
-// function nextQuestion() {
-//   for(i=0; i < game.questions.length; i++)
-//   displayQuestion(i+1)
-// };
+
+function nextQuestion() {
+  displayQuestion(i++)
+};
 
 //GAME OVER
 //Give a congratlations message. Showcase the player's score.
@@ -173,20 +162,43 @@ start.on('click',function() {
 
 //Switch players when reaching the end of the questions
 //Also, resets the board for the next player
-//
-//
-//
-//
-//function nextPlayer() {
-//   if(game.currentPlayer == game.player1) {
-//     game.currentPlayer = game.player2
-//   } else {
-//     game.currentPlayer = game.player1
-//   }
-// }
+
+next.on('click', function() {
+  // if ($('#question').innerHTML = game.questions[5].text) {
+  //   playerScore()
+  //   riddle.css({'visibility': 'hidden'})
+  //   next.css({'visibility': 'hidden'})
+  //   scores.css({'visibility': 'visible'})
+  // } else {
+  nextQuestion()
+})
+
+$('.newGame').on('click', function() {
+  nextPlayer()
+  $('.scores').fadeOut()
+  riddle.css({'visibility': 'visible'})
+  next.css({'visibility': 'visible'})
+  return i = 0
+  displayQuestion(i)
+})
+
+function nextPlayer() {
+  if(game.currentPlayer == game.player1) {
+    game.currentPlayer = game.player2
+  } else {
+    game.currentPlayer = game.player1
+  }
+}
+
+function playerScore() {
+  document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
+  document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score
+}
+
 
 //REACH GOALS
 
 //Put in a question or two that involve a prompt, rather than multiple choice.
 //randomize the order the questions appear in.
 //animations
+//Lock the next level button until they reach

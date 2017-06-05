@@ -5,7 +5,15 @@ width:60%;
 height:50%;
 text-align: center;
 }
-/*background: rgb(0, 255, 255);*/
+
+
+h1 {
+  color: purple;
+  font-family: "Times New Roman", serif;
+}
+h2 {
+  font-family: cursive;
+}
 
 .riddle{
   text-align: center;
@@ -15,4 +23,17 @@ text-align: center;
 .next{
   text-align: center;
   visibility: hidden;
+}
+
+.scores{
+  text-align: center;
+  visibility: hidden;
+}
+.scores.p {
+  font-size: 25px;
+  font-family: "Verdana", sans-serif;
+}
+
+#question{
+  background: rgb(0, 255, 255);
 }
