@@ -4,8 +4,12 @@ img {
 width:60%;
 height:50%;
 text-align: center;
+margin: -10px;
 }
 
+html, body {
+  background: pink;
+}
 
 h1 {
   color: purple;
@@ -13,11 +17,24 @@ h1 {
 }
 h2 {
   font-family: cursive;
+  font-weight: bold;
+}
+
+.intro {
+  text-align: center;
+}
+
+.intro.p {
+  font-size: 22px;
 }
 
 .riddle{
   text-align: center;
   visibility: hidden;
+}
+
+.riddle.button {
+  font-size: 25px;
 }
 
 .next{

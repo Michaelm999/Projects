@@ -18,9 +18,9 @@ var game = {
           },
           {
             text: "How much dirt is in a hole 6 and a half feet wide, 8 feet deep, and 5 feet long?",
-            answer1: "A: 240 cubic feet",
+            answer1: "A: 0 cubic feet",
             answer2: "B: 320 cubic feet",
-            answer3: "C: 0 cubic feet",
+            answer3: "C: 240 cubic",
             answer4: "D: 480 cubic feet",
           },
           {
@@ -55,7 +55,10 @@ var game = {
         "It's what you'll have if you fail to answer?",
         ]
       }
-var score = 0
+// Player Start: the game will always start with player1:
+game.currentPlayer = game.player1
+
+var score = game.currentPlayer.score
 var next = $('.next')
 var riddle = $('.riddle')
 var begin = $('.intro')
@@ -76,8 +79,6 @@ game.questions[3].answer3, game.questions[4].answer2, game.questions[5].answer3]
 // game.questions[4].correctAnswer = game.questions[4].answer2
 // game.questions[5].correctAnswer = game.questions[5].answer3
 
-// Player Start: the game will always start with player1:
-      game.currentPlayer = game.player1
 //initial riddle question
       function displayQuestion(index) {
         $('#question').text(game.questions[index].text)
@@ -102,9 +103,8 @@ start.on('click',function() {
 //response to answers: tells them if they're right or not.
 //If they guess wrong, give them a hint to help them out from the hint array.
 
-
 $('#answer1').on('click', function() {
-  if ($('#answer1') === game.questions[0].answer1 || game.questions[2].answer1) {
+  if ($('#answer1').text() === game.questions[0].answer1 || $('#answer1').text() === game.questions[2].answer1) {
   alert("Congrats, lets move on to the next level")
   score +=2
  } else {
@@ -114,7 +114,7 @@ $('#answer1').on('click', function() {
 });
 
 $('#answer2').on('click', function() {
-  if ($('#answer2') === game.questions[4].answer2) {
+  if ($('#answer2').text() === game.questions[4].answer2) {
   alert("Congrats, lets move on to the next level")
   score +=2
  } else {
@@ -124,7 +124,7 @@ $('#answer2').on('click', function() {
 });
 
 $('#answer3').on('click', function() {
-  if ($('#answer3') === game.questions[3].answer3 || game.questions[5].answer3) {
+  if ($('#answer3').text() === game.questions[3].answer3 || $('#answer3').text() === game.questions[5].answer3) {
   alert("Congrats, lets move on to the next level")
   score +=2
  } else {
@@ -134,7 +134,7 @@ $('#answer3').on('click', function() {
 });
 
 $('#answer4').on('click', function() {
-  if ($('#answer4') === game.questions[1].answer4) {
+  if ($('#answer4').text === game.questions[1].answer4) {
   alert("Congrats, lets move on to the next level")
   score +=2
  } else {
@@ -152,26 +152,20 @@ $('#answer4').on('click', function() {
 // //pushing the next level button makes the next question text and answers appear.
 // //
 
+next.on('click', function() {
+  nextQuestion()
+})
+
 function nextQuestion() {
-  displayQuestion(i++)
+  i++;
+  displayQuestion(i)
 };
 
 //GAME OVER
 //Give a congratlations message. Showcase the player's score.
 //If both players playthrough, show player1 and player2's scores next to one another.
-
 //Switch players when reaching the end of the questions
 //Also, resets the board for the next player
-
-next.on('click', function() {
-  // if ($('#question').innerHTML = game.questions[5].text) {
-  //   playerScore()
-  //   riddle.css({'visibility': 'hidden'})
-  //   next.css({'visibility': 'hidden'})
-  //   scores.css({'visibility': 'visible'})
-  // } else {
-  nextQuestion()
-})
 
 $('.newGame').on('click', function() {
   nextPlayer()
