@@ -31,7 +31,7 @@ var game = {
             answer4: "D: Heart",
           },
           {
-            text: "An diesel train is heading North at 100mph, while a 40mph wind blows East. What direction does the smoke blow?",
+            text: "An electric train is heading North at 100mph, while a 40mph wind blows East. What direction does the smoke blow?",
             answer1: "A: South",
             answer2: "B: No Direction",
             answer3: "C: East",
@@ -51,7 +51,7 @@ var game = {
         "Polar bears only live at the North Pole?",
         "How do you traditionally make a hole?",
         "It's in your head?",
-        "Where does the smoke from a diesel come from?",
+        "Where does the smoke from an electric come from?",
         "It's what you'll have if you fail to answer?",
         ]
       }
@@ -59,25 +59,17 @@ var game = {
 game.currentPlayer = game.player1
 
 var score = game.currentPlayer.score
-var next = $('.next')
 var riddle = $('.riddle')
+// var next = $('.next')
 var begin = $('.intro')
 var start = $('#start')
 var scores = $('.scores')
 var i = 0
 
 
-
 //Answer Key
 var answers = [game.questions[0].answer1, game.questions[1].answer4, game.questions[2].answer1,
 game.questions[3].answer3, game.questions[4].answer2, game.questions[5].answer3]
-
-// game.questions[0].correctAnswer = game.questions[0].answer1
-// game.questions[1].correctAnswer = game.questions[1].answer4
-// game.questions[2].correctAnswer = game.questions[2].answer1
-// game.questions[3].correctAnswer = game.questions[3].answer3
-// game.questions[4].correctAnswer = game.questions[4].answer2
-// game.questions[5].correctAnswer = game.questions[5].answer3
 
 //initial riddle question
       function displayQuestion(index) {
@@ -89,13 +81,11 @@ game.questions[3].answer3, game.questions[4].answer2, game.questions[5].answer3]
       }
 
 //Put up a start page, which would appear and explain the premise:
-//a challenge to see if anyone is clever enough to beat my challenge.
-//after clikcing the screen, this fades away, and up comes the first question
 
 start.on('click',function() {
   $('.intro').fadeOut()
   riddle.css({'visibility': 'visible'})
-  next.css({'visibility': 'visible'})
+  // next.css({'visibility': 'visible'})
   displayQuestion(i)
 });
 
@@ -105,7 +95,8 @@ start.on('click',function() {
 
 $('#answer1').on('click', function() {
   if ($('#answer1').text() === game.questions[0].answer1 || $('#answer1').text() === game.questions[2].answer1) {
-  alert("Congrats, lets move on to the next level")
+  alert("Correct. Lets move on to the next level")
+  nextQuestion()
   score +=2
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
@@ -115,7 +106,8 @@ $('#answer1').on('click', function() {
 
 $('#answer2').on('click', function() {
   if ($('#answer2').text() === game.questions[4].answer2) {
-  alert("Congrats, lets move on to the next level")
+  alert("Congrats, You're pretty good at this. Lets move on to the next level")
+  nextQuestion()
   score +=2
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
@@ -125,7 +117,8 @@ $('#answer2').on('click', function() {
 
 $('#answer3').on('click', function() {
   if ($('#answer3').text() === game.questions[3].answer3 || $('#answer3').text() === game.questions[5].answer3) {
-  alert("Congrats, lets move on to the next level")
+  alert("Congrats! Lets move on to the next level")
+  nextQuestion()
   score +=2
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
@@ -134,38 +127,38 @@ $('#answer3').on('click', function() {
 });
 
 $('#answer4').on('click', function() {
-  if ($('#answer4').text === game.questions[1].answer4) {
-  alert("Congrats, lets move on to the next level")
+  if ($('#answer4').text() === game.questions[1].answer4) {
+  alert("Congrats, Lets move on to the next level")
+  nextQuestion()
   score +=2
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
    score-=1
  }
 });
-//
-// //HINTS
-// //Possibly include a hint button, and link the hints into the questions array,
-// //so that they may appear at the same time as the Q&A.
-//
-//
-// //Function for GOING ON TO THE NEXT LEVEL.
-// //pushing the next level button makes the next question text and answers appear.
-// //
 
-next.on('click', function() {
-  nextQuestion()
-})
+//Function for GOING ON TO THE NEXT LEVEL.
+//pushing the next level button makes the next question text and answers appear.
 
 function nextQuestion() {
+  if (i === 5) {
+    gameOver()
+  } else {
   i++;
   displayQuestion(i)
-};
-
+}
+}
 //GAME OVER
 //Give a congratlations message. Showcase the player's score.
 //If both players playthrough, show player1 and player2's scores next to one another.
 //Switch players when reaching the end of the questions
 //Also, resets the board for the next player
+
+function gameOver() {
+    riddle.css({'visibility': 'hidden'});
+    scores.css({'visibility': 'visible'});
+    playerScore();
+}
 
 $('.newGame').on('click', function() {
   nextPlayer()
@@ -185,10 +178,9 @@ function nextPlayer() {
 }
 
 function playerScore() {
-  document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
-  document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score
-}
-
+  document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score;
+  document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score;
+  }
 
 //REACH GOALS
 
