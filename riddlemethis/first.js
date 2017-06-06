@@ -98,6 +98,18 @@ answers = [game.questions[0].answer1, game.questions[1].answer4, game.questions[
 game.questions[3].answer4, game.questions[4].answer3, game.questions[5].answer2,
 game.questions[6].answer2, game.questions[7].answer3]
 
+//response to answers
+// riddle.on('click', function() {
+//    if (game.questions.text() === game.questions[i].correctAnswer) {
+//   alert("Correct. Lets move on to the next level")
+//  updateScore(player, 2)
+//  nextQuestion()
+// }  else {
+//   alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
+//   updateScore(player, -1)
+// }
+// })
+
 //initial riddle question
       function displayQuestion(index) {
         $('#question').text(game.questions[index].text)
@@ -108,7 +120,6 @@ game.questions[6].answer2, game.questions[7].answer3]
       }
 
 //Put up a start page, which would appear and explain the premise:
-
 start.on('click',function() {
   $('.intro').fadeOut()
   riddle.css({'visibility': 'visible'})
@@ -118,9 +129,9 @@ start.on('click',function() {
 //ANSWERS
 //response to answers: tells them if they're right or not.
 //If they guess wrong, give them a hint to help them out from the hint array.
-
+//
 $('#answer1').on('click', function() {
-  if ($('#answer1').text() === game.questions[0].answer1 || $('#answer1').text() === game.questions[2].answer1) {
+  if ($('#answer1').text() === game.questions[i].correctAnswer) {
   alert("Correct. Lets move on to the next level")
   updateScore(player, 2)
   nextQuestion()
@@ -132,7 +143,7 @@ $('#answer1').on('click', function() {
 });
 
 $('#answer2').on('click', function() {
-  if ($('#answer2').text() === game.questions[5].answer2 || $('#answer2').text() === game.questions[6].answer2) {
+  if ($('#answer2').text() === game.questions[i].correctAnswer) {
   alert("Congrats, You're pretty good at this. Lets move on to the next level")
   updateScore(player, 2)
   nextQuestion()
@@ -144,7 +155,7 @@ $('#answer2').on('click', function() {
 });
 
 $('#answer3').on('click', function() {
-  if ($('#answer3').text() === game.questions[4].answer3 || $('#answer3').text() === game.questions[7].answer3) {
+  if ($('#answer3').text() === game.questions[i].correctAnswer) {
   alert("Congrats! Lets move on to the next level")
   updateScore(player, 2)
   nextQuestion()
@@ -156,7 +167,7 @@ $('#answer3').on('click', function() {
 });
 
 $('#answer4').on('click', function() {
-  if ($('#answer4').text() === game.questions[1].answer4|| $('#answer4').text() === game.questions[3].answer4) {
+  if ($('#answer4').text() === game.questions[i].correctAnswer) {
   alert("Congrats, Lets move on to the next level")
   updateScore(player, 2)
   nextQuestion()
