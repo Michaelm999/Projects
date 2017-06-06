@@ -1,10 +1,10 @@
 
-
 img {
 width:60%;
 height:50%;
 text-align: center;
 margin: -10px;
+background-color: pink;
 }
 
 html, body {
@@ -19,13 +19,17 @@ h2 {
   font-family: cursive;
   font-weight: bold;
 }
+.riddler{
+  width: 10%;
+  height: 10%;
+}
 
 .intro {
   text-align: center;
 }
 
 .intro.p {
-  font-size: 22px;
+  font-size: 40px;
 }
 
 .riddle{

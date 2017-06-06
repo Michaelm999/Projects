@@ -24,6 +24,13 @@ var game = {
             answer4: "D: 480 cubic feet",
           },
           {
+            text: "There are 10 fishes in a tank. 2 of them drowned, 4 swim away and 3 Died. How many fishes are still left in the tank?",
+            answer1: "A: 5 fish",
+            answer2: "B: 6 fish",
+            answer3: "C: 1 fish",
+            answer4: "D: 10 fish",
+          },
+          {
             text: "I’m rarely touched but often held and if you’re wise you’ll use me well. What am I?",
             answer1: "A: Hand",
             answer2: "B: Mind",
@@ -38,6 +45,13 @@ var game = {
             answer4: "D: West",
           },
           {
+            text: "I'm long when I'm young. I'm short when I'm old. and when there's no light, people think I'm gold. What am I?",
+            answer1: "A: Money",
+            answer2: "B: A Candle",
+            answer3: "C: Friends",
+            answer4: "D: The Sun",
+          },
+          {
             text: "It's more powerful than God. It's more evil than the devil. The poor have it. The rich need it. If you eat it, you'll die. What am I?",
             answer1: "A: Love",
             answer2: "B: Lonliness",
@@ -50,20 +64,22 @@ var game = {
         "What are you solving right now?",
         "Polar bears only live at the North Pole?",
         "How do you traditionally make a hole?",
+        "What has not happened to the fish?",
         "It's in your head?",
         "Where does the smoke from an electric come from?",
+        "I am a source of light and warmth.",
         "It's what you'll have if you fail to answer?",
         ]
       }
 // Player Start: the game will always start with player1:
 var player = game.player1
-
 var riddle = $('.riddle')
 var begin = $('.intro')
 var start = $('#start')
 var scores = $('.scores')
 var i = 0
 
+//Scores the correct player
 function updateScore(player, points) {
 if(player === game.player1) {
 game.player1.score += points
@@ -74,7 +90,8 @@ game.player2.score += points
 
 //Answer Key
 answers = [game.questions[0].answer1, game.questions[1].answer4, game.questions[2].answer1,
-game.questions[3].answer3, game.questions[4].answer2, game.questions[5].answer3]
+game.questions[3].answer4, game.questions[4].answer3, game.questions[5].answer2,
+game.questions[6].answer2, game.questions[7].answer3]
 
 //initial riddle question
       function displayQuestion(index) {
@@ -110,7 +127,7 @@ $('#answer1').on('click', function() {
 });
 
 $('#answer2').on('click', function() {
-  if ($('#answer2').text() === game.questions[4].answer2) {
+  if ($('#answer2').text() === game.questions[5].answer2 || $('#answer2').text() === game.questions[6].answer2) {
   alert("Congrats, You're pretty good at this. Lets move on to the next level")
   updateScore(player, 2)
   nextQuestion()
@@ -122,7 +139,7 @@ $('#answer2').on('click', function() {
 });
 
 $('#answer3').on('click', function() {
-  if ($('#answer3').text() === game.questions[3].answer3 || $('#answer3').text() === game.questions[5].answer3) {
+  if ($('#answer3').text() === game.questions[4].answer3 || $('#answer3').text() === game.questions[7].answer3) {
   alert("Congrats! Lets move on to the next level")
   updateScore(player, 2)
   nextQuestion()
@@ -134,11 +151,14 @@ $('#answer3').on('click', function() {
 });
 
 $('#answer4').on('click', function() {
-  if ($('#answer4').text() === game.questions[1].answer4) {
+  if ($('#answer4').text() === game.questions[1].answer4|| $('#answer4').text() === game.questions[3].answer4) {
   alert("Congrats, Lets move on to the next level")
   updateScore(player, 2)
   nextQuestion()
   $('#question').css({background: 'white'})
+  // $('html').css({'background-color': 'white'})
+  // $('.riddle').css({'background-color': 'white'})
+  // $('.scores').css({'background-color': 'white'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
    updateScore(player, -1)
@@ -149,7 +169,7 @@ $('#answer4').on('click', function() {
 //pushing the next level button makes the next question text and answers appear.
 
 function nextQuestion() {
-  if (i === 5) {
+  if (i === 7) {
     gameOver()
   } else {
   i++;
@@ -158,16 +178,15 @@ function nextQuestion() {
 }
 //GAME OVER
 //Give a congratlations message. Showcase the player's score.
-//If both players playthrough, show player1 and player2's scores next to one another.
-//Switch players when reaching the end of the questions
-//Also, resets the board for the next player
 
 function gameOver() {
     riddle.css({'visibility': 'hidden'});
     scores.css({'visibility': 'visible'});
-    playerScore();
+    playerScore()
+    ;
 }
 
+//Also, resets the board for the next player
 $('.newGame').on('click', function() {
   nextPlayer()
   scores.css({'visibility': 'hidden'});
@@ -176,6 +195,7 @@ $('.newGame').on('click', function() {
   displayQuestion(i)
 })
 
+//Switch players when reaching the end of the questions
 function nextPlayer() {
   if(player === game.player1) {
     player = game.player2
@@ -183,11 +203,15 @@ function nextPlayer() {
     player = game.player1
   }
 }
-
+//If both players playthrough, show player1 and player2's scores next to one another.
 function playerScore() {
+  if(player === game.player1){
+      document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
+    } else {
   document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
   document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score
   }
+}
 
 //REACH GOALS
 
