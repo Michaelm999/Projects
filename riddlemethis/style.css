@@ -1,28 +1,42 @@
-
 img {
 width:60%;
 height:50%;
 text-align: center;
 margin: -10px;
-background-color: pink;
 }
 
-html, body {
+#image {
+  width: 120px;
+  height: 100px;
+}
+
+body {
   background: pink;
 }
-
+.riddle {
+  margin-top: 75px;
+}
 .riddle h1 {
   color: purple;
   font-family: "Times New Roman", serif;
 }
+
 .intro h2 {
   font-family: cursive;
   font-weight: bold;
-  font-size: 35px
+  font-size: 38px
 }
-.riddler{
-  width: 10%;
+
+#riddler1{
+  width: 15%;
   height: 10%;
+  float: right;
+}
+
+#riddler2{
+  width: 15%;
+  height: 10%;
+  float: left;
 }
 
 .intro {
@@ -49,6 +63,10 @@ html, body {
   padding: 10px;
 }
 
+#start {
+  font-size: 17px;
+}
+
 .next{
   text-align: center;
   visibility: hidden;
@@ -57,6 +75,7 @@ html, body {
 .scores{
   text-align: center;
   visibility: hidden;
+  margin-top: 150px;
 }
 .scores p#winner {
   font-size: 30px;
@@ -68,6 +87,16 @@ html, body {
   font-size: 50px;
 }
 
+#status {
+  font-size: 18px;
+  text-align: left;
+}
+
 .scores h1 {
   font-style: cursive;
+  font-size: 50px;
+}
+
+.newGame {
+font-size: 15px;
 }

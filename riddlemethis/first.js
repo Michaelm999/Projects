@@ -10,33 +10,7 @@ var game = {
             answer4: "D: A Surprise",
             correctAnswer: "A: A Riddle",
             hint: "What are you solving right now?",
-          },
-          {
-            text: "A Man builds a house where all four sides face North. A bear walks by the house. What color is the bear?",
-            answer1: "A: brown",
-            answer2: "B: white",
-            answer3: "C: black",
-            answer4: "D: Not Applicable",
-            correctAnswer: "D: Not Applicable",
-            hint: "Polar bears only live at the North Pole?",
-          },
-          {
-            text: "How much dirt is in a hole 6 and a half feet wide, 8 feet deep, and 5 feet long?",
-            answer1: "A: 0 cubic feet",
-            answer2: "B: 320 cubic feet",
-            answer3: "C: 240 cubic",
-            answer4: "D: 480 cubic feet",
-            correctAnswer: "A: 0 cubic feet",
-            hint: "How do you traditionally make a hole?",
-          },
-          {
-            text: "There are 10 fishes in a tank. 2 of them drowned, 4 swim away and 3 Died. How many fishes are still left in the tank?",
-            answer1: "A: 5 fish",
-            answer2: "B: 6 fish",
-            answer3: "C: 1 fish",
-            answer4: "D: 10 fish",
-            correctAnswer: "D: 10 fish",
-            hint: "What has not happened to the fish?",
+            image: "https://image.shutterstock.com/z/stock-vector-black-question-mark-from-question-words-search-for-answer-vector-illustration-confusion-concept-123605941.jpg",
           },
           {
             text: "I’m rarely touched but often held and if you’re wise you’ll use me well. What am I?",
@@ -46,6 +20,17 @@ var game = {
             answer4: "D: Heart",
             correctAnswer: "C: Tounge",
             hint: "It's in your head?",
+            image: "https://dqam6mam97sh3.cloudfront.net/blog/ausl/wp-content/uploads/sites/2/2015/02/homer.png",
+          },
+          {
+            text: "A Man builds a house where all four sides face North. A bear walks by the house. What color is the bear?",
+            answer1: "A: brown",
+            answer2: "B: white",
+            answer3: "C: black",
+            answer4: "D: Not Applicable",
+            correctAnswer: "D: Not Applicable",
+            hint: "Polar bears only live at the North Pole?",
+            image: "http://i.dailymail.co.uk/i/pix/2014/06/14/article-2657750-1EC0F49A00000578-70_964x496.jpg",
           },
           {
             text: "An electric train is heading North at 100mph, while a 40mph wind blows East. What direction does the smoke blow?",
@@ -55,6 +40,27 @@ var game = {
             answer4: "D: West",
             correctAnswer: "B: No Direction",
             hint: "Where does the smoke from an electric come from?",
+            image: "https://lionelllc.files.wordpress.com/2012/01/6-28379_updd35a.jpg",
+          },
+          {
+            text: "There are 10 fishes in a tank. 2 of them drowned, 4 swim away and 3 Died. How many fishes are still left in the tank?",
+            answer1: "A: 5 fish",
+            answer2: "B: 6 fish",
+            answer3: "C: 1 fish",
+            answer4: "D: 10 fish",
+            correctAnswer: "D: 10 fish",
+            hint: "What has not happened to the fish?",
+            image: "http://cdn.hexjam.com/editorial_service/bases/images/000/011/115/xlarge/Untitled-3.jpg?1452847830",
+          },
+          {
+            text: "How much dirt is in a hole 6 and a half feet wide, 8 feet deep, and 5 feet long?",
+            answer1: "A: 0 cubic feet",
+            answer2: "B: 320 cubic feet",
+            answer3: "C: 240 cubic",
+            answer4: "D: 480 cubic feet",
+            correctAnswer: "A: 0 cubic feet",
+            hint: "How do you traditionally make a hole?",
+            image: "https://futurism.com/wp-content/uploads/2014/07/siberian-hole1.jpg",
           },
           {
             text: "I'm long when I'm young. I'm short when I'm old. and when there's no light, people think I'm gold. What am I?",
@@ -64,6 +70,7 @@ var game = {
             answer4: "D: The Sun",
             correctAnswer: "B: A Candle",
             hint: "I am a source of light and warmth.",
+            image: "http://orig00.deviantart.net/6623/f/2012/054/c/8/warmth_by_maniakuk-d4qp42e.png",
           },
           {
             text: "It's more powerful than God. It's more evil than the devil. The poor have it. The rich need it. If you eat it, you'll die. What am I?",
@@ -73,6 +80,7 @@ var game = {
             answer4: "D: Friendship",
             correctAnswer: "C: Nothing",
             hint: "It's what you'll have if you fail to answer?",
+            image: "https://c1.staticflickr.com/6/5254/5477681940_ae621810f4_b.jpg",
           },
         ],
       }
@@ -93,36 +101,28 @@ game.player2.score += points
   }
 }
 
-//Answer Key
-answers = [game.questions[0].answer1, game.questions[1].answer4, game.questions[2].answer1,
-game.questions[3].answer4, game.questions[4].answer3, game.questions[5].answer2,
-game.questions[6].answer2, game.questions[7].answer3]
-
-//response to answers
-// riddle.on('click', function() {
-//    if (game.questions.text() === game.questions[i].correctAnswer) {
-//   alert("Correct. Lets move on to the next level")
-//  updateScore(player, 2)
-//  nextQuestion()
-// }  else {
-//   alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
-//   updateScore(player, -1)
-// }
-// })
-
 //initial riddle question
       function displayQuestion(index) {
+        document.querySelector('#status').innerHTML = [i+1]+" out of 8 Questions"
         $('#question').text(game.questions[index].text)
         $('#answer1').text(game.questions[index].answer1)
         $('#answer2').text(game.questions[index].answer2)
         $('#answer3').text(game.questions[index].answer3)
         $('#answer4').text(game.questions[index].answer4)
+        $('#image').attr('src', game.questions[index].image)
       }
+
+//randomize
+function randomize() {
+      Math.floor(Math.random() * game.questions.length)
+      };
+
 
 //Put up a start page, which would appear and explain the premise:
 start.on('click',function() {
-  $('.intro').fadeOut()
+  $('.intro').css({'display': 'none'})
   riddle.css({'visibility': 'visible'})
+  // randomize(game.questions);
   displayQuestion(i)
 });
 
@@ -132,10 +132,11 @@ start.on('click',function() {
 //
 $('#answer1').on('click', function() {
   if ($('#answer1').text() === game.questions[i].correctAnswer) {
-  alert("Correct. Lets move on to the next level")
+  alert("Correct! Good job")
   updateScore(player, 2)
   nextQuestion()
   $('#question').css({background: 'orange'})
+  $('body').css({background: 'cyan'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
    updateScore(player, -1)
@@ -144,10 +145,11 @@ $('#answer1').on('click', function() {
 
 $('#answer2').on('click', function() {
   if ($('#answer2').text() === game.questions[i].correctAnswer) {
-  alert("Congrats, You're pretty good at this. Lets move on to the next level")
+  alert("Congratulations! You're pretty good at this!")
   updateScore(player, 2)
   nextQuestion()
   $('#question').css({background: 'olivedrab'})
+  $('body').css({background: 'brown'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
    updateScore(player, -1)
@@ -156,10 +158,11 @@ $('#answer2').on('click', function() {
 
 $('#answer3').on('click', function() {
   if ($('#answer3').text() === game.questions[i].correctAnswer) {
-  alert("Congrats! Lets move on to the next level")
+  alert("Excellent! You got it right!")
   updateScore(player, 2)
   nextQuestion()
   $('#question').css({background: 'greenyellow'})
+  $('body').css({background: 'tomato'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
    updateScore(player, -1)
@@ -168,10 +171,11 @@ $('#answer3').on('click', function() {
 
 $('#answer4').on('click', function() {
   if ($('#answer4').text() === game.questions[i].correctAnswer) {
-  alert("Congrats, Lets move on to the next level")
+  alert("That's Correct! Well Done!")
   updateScore(player, 2)
   nextQuestion()
   $('#question').css({background: 'white'})
+  $('body').css({background: 'silver'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
    updateScore(player, -1)
@@ -193,7 +197,7 @@ function nextQuestion() {
 //Give a congratlations message. Showcase the player's score.
 
 function gameOver() {
-    riddle.css({'visibility': 'hidden'})
+    riddle.fadeOut("fast")
     scores.css({'visibility': 'visible'})
     playerScore()
 }
@@ -203,9 +207,10 @@ $('.newGame').on('click', function() {
   resetBoard()
   nextPlayer()
   scores.css({'visibility': 'hidden'})
-  riddle.css({'visibility': 'visible'})
+  riddle.fadeIn("fast")
   i = 0
   displayQuestion(i)
+  $('body').css({background: 'pink'})
 })
 
 //Switch players when reaching the end of the questions
@@ -241,4 +246,3 @@ function playerScore() {
 //Put in a question or two that involve a prompt, rather than multiple choice.
 //randomize the order the questions appear in.
 //animations
-//Lock the next level button until they reach
