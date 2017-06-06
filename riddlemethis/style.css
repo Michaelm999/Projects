@@ -15,9 +15,10 @@ html, body {
   color: purple;
   font-family: "Times New Roman", serif;
 }
-h2 {
+.intro h2 {
   font-family: cursive;
   font-weight: bold;
+  font-size: 35px
 }
 .riddler{
   width: 10%;
@@ -28,10 +29,15 @@ h2 {
   text-align: center;
 }
 
-.intro.p {
-  font-size: 40px;
+.intro p {
+  font-size: 20px;
+  margin: 25px;
 }
 
+#caution {
+  font-weight: bold;
+  font-size: 20px;
+}
 .riddle{
   text-align: center;
   visibility: hidden;
@@ -65,7 +71,3 @@ h2 {
 .scores h1 {
   font-style: cursive;
 }
-
-/*#p2score {
-  visibility: hidden;
-}*/

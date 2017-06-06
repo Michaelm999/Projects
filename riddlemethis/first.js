@@ -131,7 +131,7 @@ $('#answer2').on('click', function() {
   alert("Congrats, You're pretty good at this. Lets move on to the next level")
   updateScore(player, 2)
   nextQuestion()
-  $('#question').css({background: 'yellow'})
+  $('#question').css({background: 'olivedrab'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
    updateScore(player, -1)
@@ -143,7 +143,7 @@ $('#answer3').on('click', function() {
   alert("Congrats! Lets move on to the next level")
   updateScore(player, 2)
   nextQuestion()
-  $('#question').css({background: 'green'})
+  $('#question').css({background: 'greenyellow'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
    updateScore(player, -1)
@@ -156,9 +156,6 @@ $('#answer4').on('click', function() {
   updateScore(player, 2)
   nextQuestion()
   $('#question').css({background: 'white'})
-  // $('html').css({'background-color': 'white'})
-  // $('.riddle').css({'background-color': 'white'})
-  // $('.scores').css({'background-color': 'white'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
    updateScore(player, -1)
@@ -169,7 +166,7 @@ $('#answer4').on('click', function() {
 //pushing the next level button makes the next question text and answers appear.
 
 function nextQuestion() {
-  if (i === 7) {
+  if (i === 1) {
     gameOver()
   } else {
   i++;
@@ -180,16 +177,16 @@ function nextQuestion() {
 //Give a congratlations message. Showcase the player's score.
 
 function gameOver() {
-    riddle.css({'visibility': 'hidden'});
-    scores.css({'visibility': 'visible'});
+    riddle.css({'visibility': 'hidden'})
+    scores.css({'visibility': 'visible'})
     playerScore()
-    ;
 }
 
 //Also, resets the board for the next player
 $('.newGame').on('click', function() {
+  resetBoard()
   nextPlayer()
-  scores.css({'visibility': 'hidden'});
+  scores.css({'visibility': 'hidden'})
   riddle.css({'visibility': 'visible'})
   i = 0
   displayQuestion(i)
@@ -203,13 +200,23 @@ function nextPlayer() {
     player = game.player1
   }
 }
+
+function resetBoard() {
+  if (player === game.player2) {
+    game.player1.score = 0
+    game.player2.score = 0
+  }
+}
 //If both players playthrough, show player1 and player2's scores next to one another.
 function playerScore() {
   if(player === game.player1){
       document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
+      document.querySelector('#p2score').innerHTML = ""
+      document.querySelector('.newGame').innerHTML= "Next Player"
     } else {
   document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
   document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score
+  document.querySelector('.newGame').innerHTML= "Play Again"
   }
 }
 
