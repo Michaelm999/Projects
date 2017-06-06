@@ -8,6 +8,8 @@ var game = {
             answer2: "B: A Secret",
             answer3: "C: A Punchline",
             answer4: "D: A Surprise",
+            correctAnswer: "A: A Riddle",
+            hint: "What are you solving right now?",
           },
           {
             text: "A Man builds a house where all four sides face North. A bear walks by the house. What color is the bear?",
@@ -15,6 +17,8 @@ var game = {
             answer2: "B: white",
             answer3: "C: black",
             answer4: "D: Not Applicable",
+            correctAnswer: "D: Not Applicable",
+            hint: "Polar bears only live at the North Pole?",
           },
           {
             text: "How much dirt is in a hole 6 and a half feet wide, 8 feet deep, and 5 feet long?",
@@ -22,6 +26,8 @@ var game = {
             answer2: "B: 320 cubic feet",
             answer3: "C: 240 cubic",
             answer4: "D: 480 cubic feet",
+            correctAnswer: "A: 0 cubic feet",
+            hint: "How do you traditionally make a hole?",
           },
           {
             text: "There are 10 fishes in a tank. 2 of them drowned, 4 swim away and 3 Died. How many fishes are still left in the tank?",
@@ -29,6 +35,8 @@ var game = {
             answer2: "B: 6 fish",
             answer3: "C: 1 fish",
             answer4: "D: 10 fish",
+            correctAnswer: "D: 10 fish",
+            hint: "What has not happened to the fish?",
           },
           {
             text: "I’m rarely touched but often held and if you’re wise you’ll use me well. What am I?",
@@ -36,6 +44,8 @@ var game = {
             answer2: "B: Mind",
             answer3: "C: Tounge",
             answer4: "D: Heart",
+            correctAnswer: "C: Tounge",
+            hint: "It's in your head?",
           },
           {
             text: "An electric train is heading North at 100mph, while a 40mph wind blows East. What direction does the smoke blow?",
@@ -43,6 +53,8 @@ var game = {
             answer2: "B: No Direction",
             answer3: "C: East",
             answer4: "D: West",
+            correctAnswer: "B: No Direction",
+            hint: "Where does the smoke from an electric come from?",
           },
           {
             text: "I'm long when I'm young. I'm short when I'm old. and when there's no light, people think I'm gold. What am I?",
@@ -50,6 +62,8 @@ var game = {
             answer2: "B: A Candle",
             answer3: "C: Friends",
             answer4: "D: The Sun",
+            correctAnswer: "B: A Candle",
+            hint: "I am a source of light and warmth.",
           },
           {
             text: "It's more powerful than God. It's more evil than the devil. The poor have it. The rich need it. If you eat it, you'll die. What am I?",
@@ -57,19 +71,10 @@ var game = {
             answer2: "B: Lonliness",
             answer3: "C: Nothing",
             answer4: "D: Friendship",
+            correctAnswer: "C: Nothing",
+            hint: "It's what you'll have if you fail to answer?",
           },
         ],
-//hints
-        hint: [
-        "What are you solving right now?",
-        "Polar bears only live at the North Pole?",
-        "How do you traditionally make a hole?",
-        "What has not happened to the fish?",
-        "It's in your head?",
-        "Where does the smoke from an electric come from?",
-        "I am a source of light and warmth.",
-        "It's what you'll have if you fail to answer?",
-        ]
       }
 // Player Start: the game will always start with player1:
 var player = game.player1
@@ -121,7 +126,7 @@ $('#answer1').on('click', function() {
   nextQuestion()
   $('#question').css({background: 'orange'})
  } else {
-    alert("Sorry. Incorrect. Hint: "+game.hint[i])
+    alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
    updateScore(player, -1)
  }
 });
@@ -133,7 +138,7 @@ $('#answer2').on('click', function() {
   nextQuestion()
   $('#question').css({background: 'olivedrab'})
  } else {
-    alert("Sorry. Incorrect. Hint: "+game.hint[i])
+    alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
    updateScore(player, -1)
  }
 });
@@ -145,7 +150,7 @@ $('#answer3').on('click', function() {
   nextQuestion()
   $('#question').css({background: 'greenyellow'})
  } else {
-    alert("Sorry. Incorrect. Hint: "+game.hint[i])
+    alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
    updateScore(player, -1)
  }
 });
@@ -157,7 +162,7 @@ $('#answer4').on('click', function() {
   nextQuestion()
   $('#question').css({background: 'white'})
  } else {
-    alert("Sorry. Incorrect. Hint: "+game.hint[i])
+    alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
    updateScore(player, -1)
  }
 });
@@ -166,7 +171,7 @@ $('#answer4').on('click', function() {
 //pushing the next level button makes the next question text and answers appear.
 
 function nextQuestion() {
-  if (i === 1) {
+  if (i === 7) {
     gameOver()
   } else {
   i++;
