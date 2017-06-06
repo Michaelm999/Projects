@@ -56,19 +56,24 @@ var game = {
         ]
       }
 // Player Start: the game will always start with player1:
-game.currentPlayer = game.player1
+var player = game.player1
 
-var score = game.currentPlayer.score
 var riddle = $('.riddle')
-// var next = $('.next')
 var begin = $('.intro')
 var start = $('#start')
 var scores = $('.scores')
 var i = 0
 
+function updateScore(player, points) {
+if(player === game.player1) {
+game.player1.score += points
+} else if(player === game.player2) {
+game.player2.score += points
+  }
+}
 
 //Answer Key
-var answers = [game.questions[0].answer1, game.questions[1].answer4, game.questions[2].answer1,
+answers = [game.questions[0].answer1, game.questions[1].answer4, game.questions[2].answer1,
 game.questions[3].answer3, game.questions[4].answer2, game.questions[5].answer3]
 
 //initial riddle question
@@ -85,7 +90,6 @@ game.questions[3].answer3, game.questions[4].answer2, game.questions[5].answer3]
 start.on('click',function() {
   $('.intro').fadeOut()
   riddle.css({'visibility': 'visible'})
-  // next.css({'visibility': 'visible'})
   displayQuestion(i)
 });
 
@@ -96,44 +100,48 @@ start.on('click',function() {
 $('#answer1').on('click', function() {
   if ($('#answer1').text() === game.questions[0].answer1 || $('#answer1').text() === game.questions[2].answer1) {
   alert("Correct. Lets move on to the next level")
+  updateScore(player, 2)
   nextQuestion()
-  score +=2
+  $('#question').css({background: 'orange'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
-   score-=1
+   updateScore(player, -1)
  }
 });
 
 $('#answer2').on('click', function() {
   if ($('#answer2').text() === game.questions[4].answer2) {
   alert("Congrats, You're pretty good at this. Lets move on to the next level")
+  updateScore(player, 2)
   nextQuestion()
-  score +=2
+  $('#question').css({background: 'yellow'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
-   score-=1
+   updateScore(player, -1)
  }
 });
 
 $('#answer3').on('click', function() {
   if ($('#answer3').text() === game.questions[3].answer3 || $('#answer3').text() === game.questions[5].answer3) {
   alert("Congrats! Lets move on to the next level")
+  updateScore(player, 2)
   nextQuestion()
-  score +=2
+  $('#question').css({background: 'green'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
-   score-=1
+   updateScore(player, -1)
  }
 });
 
 $('#answer4').on('click', function() {
   if ($('#answer4').text() === game.questions[1].answer4) {
   alert("Congrats, Lets move on to the next level")
+  updateScore(player, 2)
   nextQuestion()
-  score +=2
+  $('#question').css({background: 'white'})
  } else {
     alert("Sorry. Incorrect. Hint: "+game.hint[i])
-   score-=1
+   updateScore(player, -1)
  }
 });
 
@@ -162,24 +170,23 @@ function gameOver() {
 
 $('.newGame').on('click', function() {
   nextPlayer()
-  $('.scores').fadeOut()
+  scores.css({'visibility': 'hidden'});
   riddle.css({'visibility': 'visible'})
-  next.css({'visibility': 'visible'})
-  return i = 0
+  i = 0
   displayQuestion(i)
 })
 
 function nextPlayer() {
-  if(game.currentPlayer == game.player1) {
-    game.currentPlayer = game.player2
+  if(player === game.player1) {
+    player = game.player2
   } else {
-    game.currentPlayer = game.player1
+    player = game.player1
   }
 }
 
 function playerScore() {
-  document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score;
-  document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score;
+  document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
+  document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score
   }
 
 //REACH GOALS
