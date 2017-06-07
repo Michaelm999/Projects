@@ -34,16 +34,16 @@ var game = {
           },
           {
             text: "An electric train is heading North at 100mph, while a 40mph wind blows East. What direction does the smoke blow?",
-            answer1: "A: South",
+            answer1: "A: Southeast",
             answer2: "B: No Direction",
             answer3: "C: East",
-            answer4: "D: West",
+            answer4: "D: South",
             correctAnswer: "B: No Direction",
             hint: "Where does the smoke from an electric come from?",
             image: "https://lionelllc.files.wordpress.com/2012/01/6-28379_updd35a.jpg",
           },
           {
-            text: "There are 10 fishes in a tank. 2 of them drowned, 4 swim away and 3 Died. How many fishes are still left in the tank?",
+            text: "There are 10 fish in a tank. 2 of them drowned, 4 swim away and 3 Died. How many fish are still left in the tank?",
             answer1: "A: 5 fish",
             answer2: "B: 6 fish",
             answer3: "C: 1 fish",
@@ -75,7 +75,7 @@ var game = {
           {
             text: "It's more powerful than God. It's more evil than the devil. The poor have it. The rich need it. If you eat it, you'll die. What am I?",
             answer1: "A: Love",
-            answer2: "B: Lonliness",
+            answer2: "B: Loneliness",
             answer3: "C: Nothing",
             answer4: "D: Friendship",
             correctAnswer: "C: Nothing",
@@ -85,12 +85,14 @@ var game = {
         ],
       }
 // Player Start: the game will always start with player1:
-var player = game.player1
-var riddle = $('.riddle')
-var begin = $('.intro')
-var start = $('#start')
-var scores = $('.scores')
-var i = 0
+var player = game.player1;
+var riddle = $('.riddle');
+var begin = $('.intro');
+var start = $('#start');
+var scores = $('.scores');
+var i = 0;
+var currentQuestion;
+var clonedGame = jQuery.extend(true, {}, game);
 
 //Scores the correct player
 function updateScore(player, points) {
@@ -103,7 +105,9 @@ game.player2.score += points
 
 //initial riddle question
       function displayQuestion(index) {
+        currentQuestion = game.questions[index];
         document.querySelector('#status').innerHTML = [i+1]+" out of "+game.questions.length+" questions"
+        console.log($('#question'))
         $('#question').text(game.questions[index].text)
         $('#answer1').text(game.questions[index].answer1)
         $('#answer2').text(game.questions[index].answer2)
@@ -112,17 +116,33 @@ game.player2.score += points
         $('#image').attr('src', game.questions[index].image)
       }
 
-//randomize
-function randomize() {
-      Math.floor(Math.random() * game.questions.length)
-      };
+//randomizing the
+function getCurrentQuestion() {
+  return currentQuestion;
+}
+
+function getRandomQuestion() {
+  currentQuestion = game.questions[Math.floor(Math.random() * game.questions.length)];
+  return currentQuestion;
+}
+
+function removeQuestion(index) {
+  for (var i = 0; i < game.questions.length; i++) {
+    var question = game.questions[i];
+    if (question.text == index.text) {
+      console.log("inside delete");
+      game.questions.splice(i, 1);
+    }
+  }
+}
 
 
 //Put up a start page, which would appear and explain the premise:
 start.on('click',function() {
-  $('.intro').css({'display': 'none'})
-  riddle.css({'visibility': 'visible'})
-  displayQuestion(i)
+  $('.intro').css({'display': 'none'});
+  riddle.css({'visibility': 'visible'});
+  var random = Math.floor(Math.random() * game.questions.length);
+  displayQuestion(random);
 });
 
 //ANSWERS
@@ -130,53 +150,61 @@ start.on('click',function() {
 //If they guess wrong, give them a hint to help them out from the hint array.
 //
 $('#answer1').on('click', function() {
-  if ($('#answer1').text() === game.questions[i].correctAnswer) {
+  if ($('#answer1').text() === currentQuestion.correctAnswer) {
   alert("Correct! Good job")
+  var cq = getCurrentQuestion();
+  removeQuestion(cq);
   updateScore(player, 2)
-  nextQuestion()
+  nextQuestion();
   $('#question').css({background: 'orange'})
   $('body').css({background: 'cyan'})
  } else {
-    alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
+    alert("Sorry. Incorrect. Hint: "+currentQuestion.hint)
    updateScore(player, -1)
  }
 });
 
 $('#answer2').on('click', function() {
-  if ($('#answer2').text() === game.questions[i].correctAnswer) {
-  alert("Congratulations! You're pretty good at this!")
+  if ($('#answer2').text() === currentQuestion.correctAnswer) {
+  alert("Congratulations! You're pretty good at this!");
+  var cq = getCurrentQuestion();
+  removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion()
   $('#question').css({background: 'olivedrab'})
   $('body').css({background: 'brown'})
  } else {
-    alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
+    alert("Sorry. Incorrect. Hint: "+currentQuestion.hint)
    updateScore(player, -1)
  }
 });
 
 $('#answer3').on('click', function() {
-  if ($('#answer3').text() === game.questions[i].correctAnswer) {
+  if ($('#answer3').text() === currentQuestion.correctAnswer) {
   alert("Excellent! You got it right!")
+  var cq = getCurrentQuestion();
+  removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion()
   $('#question').css({background: 'greenyellow'})
   $('body').css({background: 'tomato'})
  } else {
-    alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
+    alert("Sorry. Incorrect. Hint: "+currentQuestion.hint)
    updateScore(player, -1)
  }
 });
 
 $('#answer4').on('click', function() {
-  if ($('#answer4').text() === game.questions[i].correctAnswer) {
+  if ($('#answer4').text() === currentQuestion.correctAnswer) {
   alert("That's Correct! Well Done!")
+  var cq = getCurrentQuestion();
+  removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion()
   $('#question').css({background: 'white'})
   $('body').css({background: 'silver'})
  } else {
-    alert("Sorry. Incorrect. Hint: "+game.questions[i].hint)
+    alert("Sorry. Incorrect. Hint: "+currentQuestion.hint)
    updateScore(player, -1)
  }
 });
@@ -189,7 +217,10 @@ function nextQuestion() {
     gameOver()
   } else {
   i++;
-  displayQuestion(i)
+  var _rand = Math.floor(Math.random() * game.questions.length);
+  displayQuestion(_rand);
+  //getRandomQuestion();
+  // this could call getRandomQuestion()
 }
 }
 //GAME OVER
@@ -207,8 +238,10 @@ $('.newGame').on('click', function() {
   nextPlayer()
   scores.css({'visibility': 'hidden'})
   riddle.fadeIn("fast")
-  i = 0
-  displayQuestion(i)
+  i = 0;
+  game.questions = clonedGame.questions;
+  var _rand = Math.floor(Math.random() * game.questions.length);
+  displayQuestion(_rand);
   $('body').css({background: 'pink'})
 })
 
