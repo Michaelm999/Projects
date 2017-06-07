@@ -60,7 +60,7 @@ var game = {
             answer4: "D: 480 cubic feet",
             correctAnswer: "A: 0 cubic feet",
             hint: "How do you traditionally make a hole?",
-            image: "https://futurism.com/wp-content/uploads/2014/07/siberian-hole1.jpg",
+            image: "http://axisoflogic.com/artman/uploads/3/hole.jpg",
           },
           {
             text: "I'm long when I'm young. I'm short when I'm old. and when there's no light, people think I'm gold. What am I?",
@@ -103,7 +103,7 @@ game.player2.score += points
 
 //initial riddle question
       function displayQuestion(index) {
-        document.querySelector('#status').innerHTML = [i+1]+" out of 8 Questions"
+        document.querySelector('#status').innerHTML = [i+1]+" out of "+game.questions.length+" questions"
         $('#question').text(game.questions[index].text)
         $('#answer1').text(game.questions[index].answer1)
         $('#answer2').text(game.questions[index].answer2)
@@ -122,7 +122,6 @@ function randomize() {
 start.on('click',function() {
   $('.intro').css({'display': 'none'})
   riddle.css({'visibility': 'visible'})
-  // randomize(game.questions);
   displayQuestion(i)
 });
 

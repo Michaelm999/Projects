@@ -1,30 +1,62 @@
-img {
+body {
+  background: pink;
+}
+
+.intro img {
 width:60%;
 height:50%;
 text-align: center;
 margin: -10px;
 }
 
-#image {
-  width: 120px;
-  height: 100px;
+.intro {
+  text-align: center;
 }
 
-body {
-  background: pink;
-}
-.riddle {
-  margin-top: 75px;
-}
-.riddle h1 {
-  color: purple;
-  font-family: "Times New Roman", serif;
+.intro p {
+  font-size: 20px;
+  margin: 25px;
 }
 
 .intro h2 {
   font-family: cursive;
   font-weight: bold;
   font-size: 38px
+}
+
+.riddle h1 {
+  color: purple;
+  font-family: "Times New Roman", serif;
+}
+
+.riddle{
+  text-align: center;
+  margin-top: 75px;
+  visibility: hidden;
+}
+
+.riddle button {
+  font-size: 20px;
+  border-radius: 20%;
+  padding: 10px;
+}
+
+.scores{
+  text-align: center;
+  visibility: hidden;
+  margin-top: 80px;
+}
+.scores p {
+  font-size: 20px;
+}
+
+.scores h1 {
+  font-style: cursive;
+  font-size: 50px;
+}
+
+.newGame {
+font-size: 15px;
 }
 
 #riddler1{
@@ -39,52 +71,13 @@ body {
   float: left;
 }
 
-.intro {
-  text-align: center;
-}
-
-.intro p {
-  font-size: 20px;
-  margin: 25px;
-}
-
 #caution {
   font-weight: bold;
   font-size: 20px;
 }
-.riddle{
-  text-align: center;
-  visibility: hidden;
-}
-
-.riddle button {
-  font-size: 20px;
-  border-radius: 20%;
-  padding: 10px;
-}
 
 #start {
   font-size: 17px;
-}
-
-.next{
-  text-align: center;
-  visibility: hidden;
-}
-
-.scores{
-  text-align: center;
-  visibility: hidden;
-  margin-top: 150px;
-}
-.scores p#winner {
-  font-size: 30px;
-  font-family: "Verdana", sans-serif;
-}
-
-#question{
-  background: rgb(0, 255, 255);
-  font-size: 50px;
 }
 
 #status {
@@ -92,11 +85,24 @@ body {
   text-align: left;
 }
 
-.scores h1 {
-  font-style: cursive;
+#question{
+  background: rgb(0, 255, 255);
   font-size: 50px;
 }
 
-.newGame {
-font-size: 15px;
+#image {
+  width: 400px;
+  height: 300px;
+  display: block;
+  margin: 40px auto;
+}
+
+#winner {
+  font-size: 30px;
+  font-family: "Verdana", sans-serif;
+}
+
+#success {
+  width: 50%;
+  height: 30%;
 }
