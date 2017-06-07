@@ -93,20 +93,16 @@ var scores = $('.scores');
 var i = 0;
 var currentQuestion;
 var clonedGame = jQuery.extend(true, {}, game);
-
-//Scores the correct player
-function updateScore(player, points) {
-if(player === game.player1) {
-game.player1.score += points
-} else if(player === game.player2) {
-game.player2.score += points
-  }
+function colorChange() {
+  //Math argument written by Sam Deering
+  $('#question').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
+  $('body').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
 }
 
 //initial riddle question
       function displayQuestion(index) {
         currentQuestion = game.questions[index];
-        document.querySelector('#status').innerHTML = [i+1]+" out of "+game.questions.length+" questions"
+        document.querySelector('#status').innerHTML = [i+1]+" out of 8 questions"
         console.log($('#question'))
         $('#question').text(game.questions[index].text)
         $('#answer1').text(game.questions[index].answer1)
@@ -116,11 +112,7 @@ game.player2.score += points
         $('#image').attr('src', game.questions[index].image)
       }
 
-//randomizing the
-function getCurrentQuestion() {
-  return currentQuestion;
-}
-
+//randomizing the questions
 function getRandomQuestion() {
   currentQuestion = game.questions[Math.floor(Math.random() * game.questions.length)];
   return currentQuestion;
@@ -135,7 +127,6 @@ function removeQuestion(index) {
     }
   }
 }
-
 
 //Put up a start page, which would appear and explain the premise:
 start.on('click',function() {
@@ -152,12 +143,11 @@ start.on('click',function() {
 $('#answer1').on('click', function() {
   if ($('#answer1').text() === currentQuestion.correctAnswer) {
   alert("Correct! Good job")
-  var cq = getCurrentQuestion();
+  var cq = getRandomQuestion();
   removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion();
-  $('#question').css({background: 'orange'})
-  $('body').css({background: 'cyan'})
+  colorChange();
  } else {
     alert("Sorry. Incorrect. Hint: "+currentQuestion.hint)
    updateScore(player, -1)
@@ -167,12 +157,11 @@ $('#answer1').on('click', function() {
 $('#answer2').on('click', function() {
   if ($('#answer2').text() === currentQuestion.correctAnswer) {
   alert("Congratulations! You're pretty good at this!");
-  var cq = getCurrentQuestion();
+  var cq = getRandomQuestion();
   removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion()
-  $('#question').css({background: 'olivedrab'})
-  $('body').css({background: 'brown'})
+  colorChange();
  } else {
     alert("Sorry. Incorrect. Hint: "+currentQuestion.hint)
    updateScore(player, -1)
@@ -182,12 +171,11 @@ $('#answer2').on('click', function() {
 $('#answer3').on('click', function() {
   if ($('#answer3').text() === currentQuestion.correctAnswer) {
   alert("Excellent! You got it right!")
-  var cq = getCurrentQuestion();
+  var cq = getRandomQuestion();
   removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion()
-  $('#question').css({background: 'greenyellow'})
-  $('body').css({background: 'tomato'})
+  colorChange();
  } else {
     alert("Sorry. Incorrect. Hint: "+currentQuestion.hint)
    updateScore(player, -1)
@@ -197,21 +185,28 @@ $('#answer3').on('click', function() {
 $('#answer4').on('click', function() {
   if ($('#answer4').text() === currentQuestion.correctAnswer) {
   alert("That's Correct! Well Done!")
-  var cq = getCurrentQuestion();
+  var cq = getRandomQuestion();
   removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion()
-  $('#question').css({background: 'white'})
-  $('body').css({background: 'silver'})
+  colorChange();
  } else {
     alert("Sorry. Incorrect. Hint: "+currentQuestion.hint)
    updateScore(player, -1)
  }
 });
 
+//Scores the correct player
+function updateScore(player, points) {
+if(player === game.player1) {
+game.player1.score += points
+} else if(player === game.player2) {
+game.player2.score += points
+  }
+}
+
 //Function for GOING ON TO THE NEXT LEVEL.
 //pushing the next level button makes the next question text and answers appear.
-
 function nextQuestion() {
   if (i === 7) {
     gameOver()
@@ -219,8 +214,6 @@ function nextQuestion() {
   i++;
   var _rand = Math.floor(Math.random() * game.questions.length);
   displayQuestion(_rand);
-  //getRandomQuestion();
-  // this could call getRandomQuestion()
 }
 }
 //GAME OVER
@@ -242,7 +235,7 @@ $('.newGame').on('click', function() {
   game.questions = clonedGame.questions;
   var _rand = Math.floor(Math.random() * game.questions.length);
   displayQuestion(_rand);
-  $('body').css({background: 'pink'})
+  colorChange();
 })
 
 //Switch players when reaching the end of the questions
@@ -269,7 +262,7 @@ function playerScore() {
     } else {
   document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
   document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score
-  document.querySelector('.newGame').innerHTML= "Play Again"
+  $('.newGame').css({'display': 'none'})
   }
 }
 
