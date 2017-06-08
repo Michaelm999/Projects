@@ -31,7 +31,7 @@ margin: -10px;
 
 .riddle{
   text-align: center;
-  margin-top: 75px;
+  margin-top: 70px;
   visibility: hidden;
 }
 
@@ -44,7 +44,7 @@ margin: -10px;
 .scores{
   text-align: center;
   visibility: hidden;
-  margin-top: 80px;
+  margin-top: 70px;
 }
 .scores p {
   font-size: 20px;

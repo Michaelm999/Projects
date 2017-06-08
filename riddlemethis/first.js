@@ -93,10 +93,20 @@ var scores = $('.scores');
 var i = 0;
 var currentQuestion;
 var clonedGame = jQuery.extend(true, {}, game);
+
 function colorChange() {
-  //Math argument written by Sam Deering
+ //Math argument written by Sam Deering
   $('#question').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
   $('body').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
+  }
+
+//Scores the correct player
+function updateScore(player, points) {
+if(player === game.player1) {
+game.player1.score += points
+} else if(player === game.player2) {
+game.player2.score += points
+  }
 }
 
 //initial riddle question
@@ -112,7 +122,11 @@ function colorChange() {
         $('#image').attr('src', game.questions[index].image)
       }
 
-//randomizing the questions
+//randomizing the
+function getCurrentQuestion() {
+  return currentQuestion;
+}
+
 function getRandomQuestion() {
   currentQuestion = game.questions[Math.floor(Math.random() * game.questions.length)];
   return currentQuestion;
@@ -127,6 +141,7 @@ function removeQuestion(index) {
     }
   }
 }
+
 
 //Put up a start page, which would appear and explain the premise:
 start.on('click',function() {
@@ -143,7 +158,7 @@ start.on('click',function() {
 $('#answer1').on('click', function() {
   if ($('#answer1').text() === currentQuestion.correctAnswer) {
   alert("Correct! Good job")
-  var cq = getRandomQuestion();
+  var cq = getCurrentQuestion();
   removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion();
@@ -157,7 +172,7 @@ $('#answer1').on('click', function() {
 $('#answer2').on('click', function() {
   if ($('#answer2').text() === currentQuestion.correctAnswer) {
   alert("Congratulations! You're pretty good at this!");
-  var cq = getRandomQuestion();
+  var cq = getCurrentQuestion();
   removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion()
@@ -171,7 +186,7 @@ $('#answer2').on('click', function() {
 $('#answer3').on('click', function() {
   if ($('#answer3').text() === currentQuestion.correctAnswer) {
   alert("Excellent! You got it right!")
-  var cq = getRandomQuestion();
+  var cq = getCurrentQuestion();
   removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion()
@@ -185,7 +200,7 @@ $('#answer3').on('click', function() {
 $('#answer4').on('click', function() {
   if ($('#answer4').text() === currentQuestion.correctAnswer) {
   alert("That's Correct! Well Done!")
-  var cq = getRandomQuestion();
+  var cq = getCurrentQuestion();
   removeQuestion(cq);
   updateScore(player, 2)
   nextQuestion()
@@ -196,17 +211,9 @@ $('#answer4').on('click', function() {
  }
 });
 
-//Scores the correct player
-function updateScore(player, points) {
-if(player === game.player1) {
-game.player1.score += points
-} else if(player === game.player2) {
-game.player2.score += points
-  }
-}
-
 //Function for GOING ON TO THE NEXT LEVEL.
 //pushing the next level button makes the next question text and answers appear.
+
 function nextQuestion() {
   if (i === 7) {
     gameOver()
@@ -265,9 +272,3 @@ function playerScore() {
   $('.newGame').css({'display': 'none'})
   }
 }
-
-//REACH GOALS
-
-//Put in a question or two that involve a prompt, rather than multiple choice.
-//randomize the order the questions appear in.
-//animations
