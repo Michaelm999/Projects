@@ -221,7 +221,7 @@ function nextQuestion() {
   i++;
   var _rand = Math.floor(Math.random() * game.questions.length);
   displayQuestion(_rand);
-}
+  }
 }
 //GAME OVER
 //Give a congratlations message. Showcase the player's score.
@@ -236,7 +236,7 @@ function gameOver() {
 //Also, resets the board for the next player
 $('.newGame').on('click', function() {
   resetBoard()
-  nextPlayer()
+  newPlayer()
   scores.css({'visibility': 'hidden'})
   riddle.fadeIn("fast")
   i = 0;
@@ -246,8 +246,8 @@ $('.newGame').on('click', function() {
   colorChange();
 })
 
-//Switch players when reaching the end of the questions
-function nextPlayer() {
+//Switch players when reaching the end
+function newPlayer() {
   if(player === game.player1) {
     player = game.player2
   } else {
@@ -261,6 +261,7 @@ function resetBoard() {
     game.player2.score = 0
   }
 }
+
 //If both players playthrough, show player1 and player2's scores next to one another.
 function playerScore() {
   if(player === game.player1){
@@ -275,6 +276,7 @@ function playerScore() {
   }
 }
 
+//Announces which player wins
 function whoWon() {
   if (game.player1.score < game.player2.score) {
     document.querySelector('#whoWon').innerHTML = "Player 2 Wins!"
