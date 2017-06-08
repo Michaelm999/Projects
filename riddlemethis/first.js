@@ -230,6 +230,7 @@ function gameOver() {
     riddle.fadeOut("fast")
     scores.css({'visibility': 'visible'})
     playerScore()
+    document.getElementById('fanfare').play()
 }
 
 //Also, resets the board for the next player
