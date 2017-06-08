@@ -1,5 +1,5 @@
 body {
-  background: pink;
+  background: #FFC0CB;
 }
 
 .intro img {
@@ -7,7 +7,6 @@ width:60%;
 height:50%;
 text-align: center;
 margin: -10px;
-border: pink;
 }
 
 .intro {
@@ -45,7 +44,7 @@ border: pink;
 .scores{
   text-align: center;
   visibility: hidden;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 .scores p {
   font-size: 20px;
@@ -62,13 +61,13 @@ font-size: 15px;
 
 #riddler1{
   width: 15%;
-  height: 10%;
+  height: 15%;
   float: right;
 }
 
 #riddler2{
   width: 15%;
-  height: 10%;
+  height: 15%;
   float: left;
 }
 
@@ -98,12 +97,16 @@ font-size: 15px;
   margin: 40px auto;
 }
 
+#success {
+  width: 50%;
+  height: 30%;
+}
+
 #winner {
   font-size: 30px;
   font-family: "Verdana", sans-serif;
 }
-
-#success {
-  width: 50%;
-  height: 30%;
+#whoWon {
+  font-size: 30px;
+  font-family: "Verdana", sans-serif;
 }

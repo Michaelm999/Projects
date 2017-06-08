@@ -149,6 +149,7 @@ start.on('click',function() {
   riddle.css({'visibility': 'visible'});
   var random = Math.floor(Math.random() * game.questions.length);
   displayQuestion(random);
+  colorChange();
 });
 
 //ANSWERS
@@ -271,5 +272,16 @@ function playerScore() {
   document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
   document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score
   $('.newGame').css({'display': 'none'})
+  whoWon()
+  }
+}
+
+function whoWon() {
+  if (game.player1.score < game.player2.score) {
+    document.querySelector('#whoWon').innerHTML = "Player 2 Wins!"
+  } else if (game.player1.score > game.player2.score) {
+    document.querySelector('#whoWon').innerHTML = "Player 1 Wins!"
+  } else {
+    document.querySelector('#whoWon').innerHTML = "Both Players Tie!"
   }
 }
