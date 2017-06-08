@@ -96,7 +96,7 @@ var clonedGame = jQuery.extend(true, {}, game);
 
 function colorChange() {
  //Math argument written by Sam Deering
-  $('#question').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
+  $('#question').css({background: 'rgb(' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ')'})
   $('body').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
   }
 
@@ -122,7 +122,7 @@ game.player2.score += points
         $('#image').attr('src', game.questions[index].image)
       }
 
-//randomizing the
+//Randomizing the order
 function getCurrentQuestion() {
   return currentQuestion;
 }
@@ -224,8 +224,7 @@ function nextQuestion() {
   }
 }
 //GAME OVER
-//Give a congratlations message. Showcase the player's score.
-
+//Give a congratlation message & showcase the player's score.
 function gameOver() {
     riddle.fadeOut("fast")
     scores.css({'visibility': 'visible'})
@@ -233,10 +232,10 @@ function gameOver() {
     document.getElementById('fanfare').play()
 }
 
-//Also, resets the board for the next player
+//Resets the board for the next player
 $('.newGame').on('click', function() {
   resetBoard()
-  newPlayer()
+  switchPlayer()
   scores.css({'visibility': 'hidden'})
   riddle.fadeIn("fast")
   i = 0;
@@ -246,8 +245,8 @@ $('.newGame').on('click', function() {
   colorChange();
 })
 
-//Switch players when reaching the end
-function newPlayer() {
+//Switch from player one to player two
+function switchPlayer() {
   if(player === game.player1) {
     player = game.player2
   } else {
