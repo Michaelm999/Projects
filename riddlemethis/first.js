@@ -136,7 +136,6 @@ function removeQuestion(index) {
   for (var i = 0; i < game.questions.length; i++) {
     var question = game.questions[i];
     if (question.text == index.text) {
-      console.log("inside delete");
       game.questions.splice(i, 1);
     }
   }
