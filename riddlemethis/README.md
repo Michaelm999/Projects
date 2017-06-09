@@ -1,7 +1,7 @@
 # Riddle Me This
---
+
 ![riddle](Logomakr_8kV080.png)
---
+
 ## Hi there! Welcome to my Riddle Challenge! Try to take it on, if you dare!
 
 Each player takes on a series of brain teasers designed to test players critical thinking logic skills. It is multiple choice, but it's up to you to figure out which choice is correct. But before you decide to just push every button until you guess right, you should know how the game is scored:
@@ -17,7 +17,6 @@ Try playing it [here](https://michaelm999.github.io/Projects/riddlemethis/questi
 
 Riddle Me This is being built using HTML, CSS, Javascript, and the jQuery library.
 
---
 
 ## MVP
 + Order riddles appear in is randomized, and it tells you how many there are.
