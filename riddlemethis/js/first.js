@@ -95,7 +95,6 @@ var currentQuestion;
 var clonedGame = jQuery.extend(true, {}, game);
 
 function colorChange() {
- //Math argument written by Sam Deering
   $('#question').css({background: 'rgb(' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ')'})
   $('body').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
   }
