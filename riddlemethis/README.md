@@ -11,7 +11,7 @@ Each player takes on a series of brain teasers designed to test players critical
 
 After one player plays through, Player 2 gets the chance to try and solve these riddles. Both players scores will be displayed at the end.
 
---
+Try playing it [here](https://michaelm999.github.io/Projects/riddlemethis/questions.html)
 
 ## Development and Technologies
 
