@@ -24,6 +24,9 @@ Riddle Me This is being built using HTML, CSS, Javascript, and the jQuery librar
 + A page alert will tell player if they have guessed right or wrong
 + If the player guesses wrong, it will give out a hint to help the player out.
 
+## Bugs
++ Background of Logo does not quite match up wiht the rest of the background. Off hue slightly.
+
 ## Dream Features
 + Ability for both players to play again without refreshing
 + Short answer section that require users to write in an answer to questions.

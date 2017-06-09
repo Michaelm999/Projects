@@ -232,7 +232,6 @@ function gameOver() {
 
 //Resets the board for the next player
 $('.newGame').on('click', function() {
-  resetBoard()
   switchPlayer()
   scores.css({'visibility': 'hidden'})
   riddle.fadeIn("fast")
@@ -249,13 +248,6 @@ function switchPlayer() {
     player = game.player2
   } else {
     player = game.player1
-  }
-}
-
-function resetBoard() {
-  if (player === game.player2) {
-    game.player1.score = 0
-    game.player2.score = 0
   }
 }
 
