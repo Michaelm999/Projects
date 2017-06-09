@@ -27,9 +27,9 @@ Riddle Me This is being built using HTML, CSS, Javascript, and the jQuery librar
 + The background of the Logo does not quite match up wiht the rest of the background. It is off hue slightly.
 
 ## Dream Features
-+ Ability for both players to play again without refreshing
++ Ability for both players to play again without refreshing.
 + Short answer section that require users to write in answers to questions.
-+ Link to share game with others.
++ Randomize the position of the answers.
 
 ## Credits
 + Game Logo made with [Logo Makr](https://logomakr.com/)
