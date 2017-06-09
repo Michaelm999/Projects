@@ -211,7 +211,6 @@ $('#answer4').on('click', function() {
 });
 
 //Function for GOING ON TO THE NEXT LEVEL.
-//pushing the next level button makes the next question text and answers appear.
 
 function nextQuestion() {
   if (i === 7) {
