@@ -20,15 +20,15 @@ Riddle Me This is being built using HTML, CSS, Javascript, and the jQuery librar
 
 ## MVP
 + Order riddles appear in is randomized, and it tells you how many there are.
-+ A page alert will tell player if they have guessed right or wrong
++ A page alert will tell the player if they have guessed right or wrong
 + If the player guesses wrong, it will give out a hint to help the player out.
 
 ## Bugs
-+ Background of Logo does not quite match up wiht the rest of the background. Off hue slightly.
++ The background of the Logo does not quite match up wiht the rest of the background. It is off hue slightly.
 
 ## Dream Features
 + Ability for both players to play again without refreshing
-+ Short answer section that require users to write in an answer to questions.
++ Short answer section that require users to write in answers to questions.
 + Link to share game with others.
 
 ## Credits
