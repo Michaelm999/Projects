@@ -30,4 +30,4 @@ Riddle Me This is being built using HTML, CSS, Javascript, and the jQuery librar
 + Link to share game with others.
 
 ## Credits
-+ Game Logo made with [Logo Maker](https://logomakr.com/)
++ Game Logo made with [Logo Makr](https://logomakr.com/)
