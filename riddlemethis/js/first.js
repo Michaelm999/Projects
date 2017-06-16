@@ -94,6 +94,7 @@ var i = 0;
 var currentQuestion;
 var clonedGame = jQuery.extend(true, {}, game);
 
+//Change the Color
 function colorChange() {
   $('#question').css({background: 'rgb(' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ')'})
   $('body').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
@@ -108,7 +109,7 @@ game.player2.score += points
   }
 }
 
-//initial riddle question
+//Initial riddle question
       function displayQuestion(index) {
         currentQuestion = game.questions[index];
         document.querySelector('#status').innerHTML = [i+1]+" out of 8 questions"
