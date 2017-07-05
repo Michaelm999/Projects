@@ -96,7 +96,7 @@ var clonedGame = jQuery.extend(true, {}, game);
 
 function colorChange() {
   $('#question').css({background: 'rgb(' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ')'})
-  $('body').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
+  $('body').css({background: 'rgb(' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ')'})
   }
 
 //Scores the correct player
