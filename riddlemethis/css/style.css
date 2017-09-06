@@ -25,6 +25,7 @@ margin: -10px;
 }
 
 .riddle h1 {
+  color: black;
   font-family: "Times New Roman", serif;
 }
 
@@ -57,7 +58,10 @@ margin: -10px;
 .newGame {
 font-size: 15px;
 }
-
+.NextGame {
+font-size: 20px;
+visibility: hidden;
+}
 #riddler1{
   width: 15%;
   height: 15%;

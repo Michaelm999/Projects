@@ -94,10 +94,9 @@ var i = 0;
 var currentQuestion;
 var clonedGame = jQuery.extend(true, {}, game);
 
-//Change the Color
 function colorChange() {
   $('#question').css({background: 'rgb(' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ')'})
-  $('body').css({background: 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'})
+  $('body').css({background: 'rgb(' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ',' + (Math.floor(Math.random() * 256/2)+256/2) + ')'})
   }
 
 //Scores the correct player
@@ -109,7 +108,7 @@ game.player2.score += points
   }
 }
 
-//Initial riddle question
+//initial riddle question
       function displayQuestion(index) {
         currentQuestion = game.questions[index];
         document.querySelector('#status').innerHTML = [i+1]+" out of 8 questions"
@@ -212,6 +211,7 @@ $('#answer4').on('click', function() {
 });
 
 //Function for GOING ON TO THE NEXT LEVEL.
+//pushing the next level button makes the next question text and answers appear.
 
 function nextQuestion() {
   if (i === 7) {
@@ -233,6 +233,7 @@ function gameOver() {
 
 //Resets the board for the next player
 $('.newGame').on('click', function() {
+  resetBoard()
   switchPlayer()
   scores.css({'visibility': 'hidden'})
   riddle.fadeIn("fast")
@@ -243,12 +244,23 @@ $('.newGame').on('click', function() {
   colorChange();
 })
 
+$('.NextGame').on('click', function() {
+  window.location.reload()
+})
+
 //Switch from player one to player two
 function switchPlayer() {
   if(player === game.player1) {
     player = game.player2
   } else {
     player = game.player1
+  }
+}
+
+function resetBoard() {
+  if (player === game.player2) {
+    game.player1.score = 0
+    game.player2.score = 0
   }
 }
 
@@ -262,6 +274,7 @@ function playerScore() {
   document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
   document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score
   $('.newGame').css({'display': 'none'})
+  $('.NextGame').css({'visibility': 'visible'})
   whoWon()
   }
 }
