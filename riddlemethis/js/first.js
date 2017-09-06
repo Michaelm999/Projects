@@ -244,6 +244,10 @@ $('.newGame').on('click', function() {
   colorChange();
 })
 
+$('.NextGame').on('click', function() {
+  window.location.reload()
+})
+
 //Switch from player one to player two
 function switchPlayer() {
   if(player === game.player1) {
@@ -270,6 +274,7 @@ function playerScore() {
   document.querySelector('#p1score').innerHTML = "Player 1 Score: "+game.player1.score
   document.querySelector('#p2score').innerHTML = "Player 2 Score: "+game.player2.score
   $('.newGame').css({'display': 'none'})
+  $('.NextGame').css({'visibility': 'visible'})
   whoWon()
   }
 }
